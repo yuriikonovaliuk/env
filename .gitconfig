@@ -1,0 +1,12 @@
+[alias]
+	hist = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s' --all
+	branches = for-each-ref --sort=-committerdate refs/heads/
+[color]
+    ui = auto
+[push]
+    default = upstream
+[user]
+	name = Yurii Konovaliuk
+	email = yurii.konovaliuk@gmail.com
+[core]
+	editor = vim
