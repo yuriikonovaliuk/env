@@ -46,4 +46,14 @@ hi LineNr ctermfg=6
 hi CursorLineNr ctermfg=6
 " End Colors
 
+" Sideways
+nnoremap <c-h> :SidewaysLeft<cr>
+nnoremap <c-l> :SidewaysRight<cr>
+
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
+" End Sideways
+
 execute pathogen#infect()
