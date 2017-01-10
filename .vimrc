@@ -28,6 +28,7 @@ set relativenumber
 autocmd BufWritePre * %s/\s\+$//e
 set pastetoggle=<F2>
 nnoremap <C-s> <C-a>
+let mapleader=" "
 
 " Utility
 function! NumberToggle()
@@ -55,5 +56,9 @@ xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
 " End Sideways
+
+" ArgWrap
+nnoremap <silent> <leader>a :ArgWrap<CR>
+" End ArgWrap
 
 execute pathogen#infect()
