@@ -29,6 +29,7 @@ autocmd BufWritePre * %s/\s\+$//e
 set pastetoggle=<F2>
 nnoremap <C-s> <C-a>
 let mapleader=" "
+nnoremap <leader>/ :nohlsearch<CR>
 
 " Utility
 function! NumberToggle()
