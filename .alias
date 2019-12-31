@@ -1,4 +1,76 @@
+# General .alias file
+#
 alias ls='ls --color=yes'
+alias la='ls -a'
 alias grep='grep --color'
+alias tmuxa='tmux a'
+alias tailerror='DATE=`date +%Y-%m-%d`;tail -vf `find /var/log/ -type f -name error\*log -o -name error\*log.$DATE 2>/dev/null`'
+alias tailaccess='DATE=`date +%Y-%m-%d`;tail -vf `find /var/log/ -type f -name access\*log -o -name access\*log.$DATE 2>/dev/null`'
 
-alias tmux='TERM=xterm-256color tmux'
+# Git
+function git_rebase_num {
+    git rebase -i HEAD~$1
+}
+
+function get_git_matching_commits {
+    git log --format=%s | awk "{if(/$1/)print;else exit}"
+}
+
+function get_git_number_of_commits {
+    get_git_matching_commits `git log -1 --format=%s | grep -o "^[a-zA-Z0-9_-]\+"` | wc -l
+}
+
+function git_soft_reset {
+    git reset --soft HEAD~$1
+}
+
+alias gfm="git ls-files -m"
+alias gst="git status"
+alias gbr="git rev-parse --abbrev-ref HEAD"
+alias gbrs="git branch"
+alias grsbr="git reset --hard"
+alias gpl='git pull --rebase origin `gbr`'
+alias gplf='git reset --hard origin/`gbr` && gpl'
+alias gpla="git pull"
+alias gfa="git fetch --all"
+alias gps='git push origin `gbr`:`gbr`'
+alias gpsf='git push --force origin `gbr`:`gbr`'
+alias gpss='git push --set-upstream origin `gbr`'
+alias gsh="git stash"
+alias gush="git stash pop"
+alias gcm="git commit"
+alias gucm="git_soft_reset 1"
+alias gucmn="git_soft_reset"
+alias gca="git commit -a"
+alias ga="git add"
+alias gua="git reset HEAD"
+alias gcp="git cherry-pick"
+alias gco="git checkout"
+alias gcob="git checkout -b"
+alias grh="git reset --hard"
+alias gmt="git mergetool"
+alias grb="git rebase"
+alias gri='git_rebase_num `get_git_number_of_commits`'
+alias grin="git_rebase_num"
+alias grbc="git rebase --continue"
+alias gcln="git clean -df"
+alias glg="git log"
+alias gcmh="git log -1 --format=%H"
+alias gdf="git diff"
+alias grm="git rm"
+alias gmv="git mv"
+
+# dude
+alias duc="dude git-checkout"
+alias dup="dude puppet"
+alias dur="dude restart"
+alias dut="dude tail-all-logs"
+
+# packages
+function list_backport {
+    grep --no-filename -oP "(?<=Package: ).*" /var/lib/apt/lists/deb.debian.org_debian_dists_stretch-backports_*
+}
+
+function apt_backport_install {
+    aptitude -t stretch-backports install $1
+}

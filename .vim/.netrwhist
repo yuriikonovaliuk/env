@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/ykonovaliuk/projects/env/.bashrc_scripts'
+let g:netrw_dirhist_2='/home/ykonovaliuk/.bashrc_scripts'
+let g:netrw_dirhist_3='/home/ykonovaliuk/projects/metathon2018-alexaskill-partners/lambda_function'
+let g:netrw_dirhist_4='/home/ykonovaliuk/projects/spapi_test/tests/helpers'
+let g:netrw_dirhist_5='/home/ykonovaliuk/projects/api_test/tests/helpers'
+let g:netrw_dirhist_6='/home/ykonovaliuk/projects/err1009'
+let g:netrw_dirhist_7='/home/ykonovaliuk/projects/api_test/tests/helpers'

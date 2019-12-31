@@ -1,0 +1,17 @@
+__git_complete ga _git_add
+__git_complete gbrs _git_branch
+__git_complete gcm _git_commit
+__git_complete gco _git_checkout
+__git_complete gcp _git_cherry_pick
+__git_complete gdf _git_diff
+__git_complete glg _git_log
+__git_complete gmt _git_mergetool
+__git_complete gmv _git_mv
+__git_complete gpla _git_pull
+__git_complete grb _git_rebase
+__git_complete grm _git_rm
+__git_complete gsh _git_stash
+__git_complete gst _git_status
+__git_complete gua _git_reset
+__git_complete grsbr _git_reset
+__git_complete gush _git_stash
