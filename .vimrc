@@ -32,19 +32,26 @@ set pastetoggle=<F2>
 nnoremap <C-s> <C-a>
 let mapleader=" "
 nnoremap <leader>/ :nohlsearch<CR>
+nnoremap <C-W><C-F> <C-W>vgf
 
 """ Filetypes
 " lua
 au BufRead,BufNewFile *.lua set filetype=lua
 autocmd FileType lua setlocal commentstring=--\ %s
+autocmd FileType lua setlocal colorcolumn=121
 
 " python
 autocmd FileType python setlocal colorcolumn=80
 autocmd FileType python setlocal commentstring=#\ %s
+autocmd FileType python set path+=db
+
+" yaml
+autocmd FileType yaml setlocal commentstring=#\ %s
 
 " java
 autocmd FileType java setlocal colorcolumn=121
-autocmd FileType java setlocal path+=/home/ykonovaliuk/src/jdk/src/java.base/share/classes
+autocmd FileType java set path+=src/main/java
+autocmd FileType java set path+=src/test/java
 
 " conf
 autocmd FileType conf setlocal commentstring=#\ %s
@@ -54,6 +61,9 @@ autocmd FileType sshconfig setlocal commentstring=#\ %s
 
 " vim
 autocmd FileType vim setlocal commentstring=\"\ %s
+
+" Bash
+autocmd FileType sh setlocal colorcolumn=81
 
 """ Utility
 function! NumberToggle()
@@ -66,32 +76,6 @@ endfunc
 
 nnoremap <C-n> :call NumberToggle()<CR>
 
-function! OpenUnderCursor(win)
-    let filename = "lib/" . substitute(expand('<cword>'), "::", "/", "g") . ".pm"
-    let functionname = ""
-    if !filereadable(filename)
-        let filename = "lib/" . substitute(substitute(expand('<cword>'), ".*\\zs::.*", "", ""), "::", "/", "g") . ".pm"
-        let functionname = "sub *" . substitute(expand('<cword>'), ".*::", "", "")
-    endif
-    let open_command = "edit " . filename
-    if (a:win == 0)
-        let open_command = "tabedit " . filename
-    else
-        let open_command = "split " . filename
-        let cols = winwidth('%')
-        if cols > 170
-            let open_command = "v" . open_command
-        endif
-    endif
-    execute open_command
-    if strlen(functionname) > 0
-        execute "normal /" . functionname . "/e+1\<CR>"
-        nohlsearch
-    endif
-endfunc
-
-nmap <leader>o :call OpenUnderCursor(0)<CR>
-nmap <leader>O :call OpenUnderCursor(1)<CR>
 nmap <leader>w :only<CR>
 nmap <leader>W :hide<CR>
 """ End Utility
@@ -144,5 +128,10 @@ let g:closetag_close_shortcut = '<leader>>'
 noremap <C-t> :tabnew split<CR>
 noremap <C-T> :tab split<CR>
 """ End Tabs
+
+""" rest-console
+let g:vrc_response_default_content_type = 'application/json'
+let g:vrc_syntax_highlight_response = 1
+""" End rest-console
 
 execute pathogen#infect()
